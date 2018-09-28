@@ -1,0 +1,7 @@
+[case1]
+p1 =1234,1234,1234543
+p2 = a2,b2,c2
+
+[case2]
+role = author
+last_login = 2003-05-13
