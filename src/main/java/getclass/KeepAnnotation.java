@@ -1,6 +1,7 @@
 package getclass;
 
 import java.lang.annotation.Annotation;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,12 +14,18 @@ public class KeepAnnotation {
         private Class classzz;
         private Annotation classzzAnnotation;
         private Map<String,Annotation> methodAnnotation;
-        public KeepAnnotation(Class classzz) {
+
+    public List<Map<String, Annotation>> getMethodAnnotationlist() {
+        return methodAnnotationlist;
+    }
+    public void setMethodAnnotationlist(List<Map<String, Annotation>> methodAnnotationlist) {
+        this.methodAnnotationlist = methodAnnotationlist;
+    }
+    private List<Map<String,Annotation>> methodAnnotationlist;
+
+    public KeepAnnotation(Class classzz) {
             this.classzz = classzz;
         }
-
-
-
         public Class getClasszz() {
             return classzz;
         }

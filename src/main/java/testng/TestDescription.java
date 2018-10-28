@@ -19,7 +19,6 @@ public @interface TestDescription {
     public String description() default "";
     //验证点
     public String verification() default "";
-
     public String CaseID() default"";
     public String Lever() default"";
 

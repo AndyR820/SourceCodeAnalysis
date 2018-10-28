@@ -9,26 +9,32 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 /**
- * Created by andy on 2018/9/25.
- * 按名称过滤,只测试Item为High的用例
+ * Created by andy on 2018/9/26.
  */
-public class ItemFilter implements IMethodInterceptor {
+public class CaseFilterByCaseId implements IMethodInterceptor {
+
     private List<IMethodInstance> methodsToTest = null;
     //不用执行的
     public static int totalIgnored = 0;
     public static int totalRun = 0;
     public static int totalConfigured = 0;
-
-
+    private static String caseid;
+    public CaseFilterByCaseId(String caseid){
+        this.caseid=caseid;
+    }
 
 
     @Override
     public List<IMethodInstance> intercept(List<IMethodInstance> methods, ITestContext iTestContext) {
+        System.out.println("caseid"+caseid);
         if (methodsToTest == null) {
+            //建立一个排序MAP
             SortedMap<String, IMethodInstance> sortedMap = new TreeMap<String, IMethodInstance>();
+            //定义一个不满足条件的方法LIST
             List<String> ignoredMethods = new ArrayList<String>();
-            for (Iterator<IMethodInstance> it = methods.iterator(); it
-                    .hasNext(); ) {
+            //遍历所有的方法
+            for (Iterator<IMethodInstance> it = methods.iterator(); it.hasNext(); ) {
+                //将下一个方法赋值给变量
                 IMethodInstance iMethodInstance = it.next();
                 ITestNGMethod m = iMethodInstance.getMethod();
                 String methodName = m.getConstructorOrMethod().getName();
@@ -45,9 +51,9 @@ public class ItemFilter implements IMethodInterceptor {
             }
             List<IMethodInstance> rtMethods = new ArrayList<IMethodInstance>(sortedMap.values());
 
-            ProgressTracker.totalRun = totalRun;
+            ProgressTrackerListener.totalRun = totalRun;
 
-            System.out.println("Ignored Test Methods: " + ignoredMethods);
+            System.out.println("忽略的方法: " + ignoredMethods);
 
             methodsToTest = rtMethods;
         }
@@ -60,18 +66,15 @@ public class ItemFilter implements IMethodInterceptor {
         Method m = iTestNGMethod.getConstructorOrMethod().getMethod();
         if ((m.getAnnotation(TestDescription.class) == null)) {
             return isQualified;
-        }else if (m.getAnnotation(TestDescription.class).item() == null) {
+        }else if (m.getAnnotation(TestDescription.class).CaseID() == null) {
             return isQualified;
-        }else if (m.getAnnotation(TestDescription.class).item().equals(getCaseLevel())) {
+        }else if (m.getAnnotation(TestDescription.class).CaseID().equals(caseid)) {
             isQualified=true;
             return isQualified;
         }
         return isQualified;
     }
 
-        //定义执行级别
-        private  String getCaseLevel(){
-        return "high";
-        }
+    
 
 }

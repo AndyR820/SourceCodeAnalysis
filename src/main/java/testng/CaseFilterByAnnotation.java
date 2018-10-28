@@ -15,7 +15,7 @@ import java.util.*;
 /**
  * Created by andy on 2018/9/26.
  */
-public class CaseFilter implements IMethodInterceptor {
+public class CaseFilterByAnnotation implements IMethodInterceptor {
 
     private List<IMethodInstance> methodsToTest = null;
     //不用执行的
@@ -25,6 +25,8 @@ public class CaseFilter implements IMethodInterceptor {
     private static  String[] caseids;
     private static String lerver;
     private static String[] lables;
+    private static String caseid;
+
 
     static {
         Properties properties = new Properties();
@@ -76,7 +78,7 @@ public class CaseFilter implements IMethodInterceptor {
             }
             List<IMethodInstance> rtMethods = new ArrayList<IMethodInstance>(sortedMap.values());
 
-            ProgressTracker.totalRun = totalRun;
+            ProgressTrackerListener.totalRun = totalRun;
 
             System.out.println("忽略的方法: " + ignoredMethods);
 
@@ -84,8 +86,6 @@ public class CaseFilter implements IMethodInterceptor {
         }
         return methodsToTest;
     }
-
-
 
     //判断是否满足自定义级别
     private boolean isQualified(ITestNGMethod iTestNGMethod) {
@@ -102,6 +102,7 @@ public class CaseFilter implements IMethodInterceptor {
         return isQualified;
     }
 
+    
     //定义执行级别
     private  String getCaseLevel(){
         return lerver;

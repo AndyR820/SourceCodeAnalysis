@@ -12,6 +12,8 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
+//Retention注解决定MyAnnotation注解的生命周期 详见RetentionPolicyRC.java
+//Target注解决定MyAnnotation注解可以加在哪些成分上，如加在类身上，或者属性身上，或者方法身上等成分
 public @interface MyAnnotationT {
     /**
      * 为注解添加value属性，这个value属性很特殊，如果一个注解中只有一个value属性要设置，

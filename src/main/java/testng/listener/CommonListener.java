@@ -1,4 +1,4 @@
-package testng;
+package testng.listener;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,14 +14,17 @@ import java.text.SimpleDateFormat;
  */
 public class CommonListener extends TestListenerAdapter {
     static final Logger logger = LogManager.getLogger(CommonListener.class);
+
     @Override
     public void onTestFailure(ITestResult testresult) {
         logger.info(" >> "+testresult.getName()+ " | Test Method Failed");
     }
+
     @Override
     public void onTestSkipped(ITestResult testresult) {
         logger.info(" >> "+testresult.getName()+ "| Test Method Skipped");
     }
+
     /**
      * Test Success
      * @param testresult
@@ -30,6 +33,8 @@ public class CommonListener extends TestListenerAdapter {
     public void onTestSuccess(ITestResult testresult) {
         logger.info(" >> "+testresult.getTestClass()+"-"+testresult.getName()+ "| Test Method Success");
     }
+
+
     /**
      * CASE Start
      * @param result

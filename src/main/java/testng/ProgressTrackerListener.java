@@ -7,7 +7,11 @@ import org.testng.ITestResult;
 
 import java.util.Calendar;
 
-public class ProgressTracker implements IInvokedMethodListener {
+
+/**
+ *  进度跟踪监听
+ */
+public class ProgressTrackerListener implements IInvokedMethodListener {
 
 	private long startTime = 0;
 	private int totalExecuted = 0;
@@ -54,6 +58,8 @@ public class ProgressTracker implements IInvokedMethodListener {
 
 	@Override
 	public void beforeInvocation(IInvokedMethod invokedMethod, ITestResult arg1) {
+
+		invokedMethod.getTestMethod();
 		if (invokedMethod.isTestMethod()) {
 			ITestNGMethod m = invokedMethod.getTestMethod();
 			String methodName = m.getConstructorOrMethod().getName();

@@ -66,7 +66,7 @@ public class OSFilter implements IMethodInterceptor {
 			}
 			List<IMethodInstance> rtMethods = new ArrayList<IMethodInstance>(sortedMap.values());
 
-			ProgressTracker.totalRun = totalRun;
+			ProgressTrackerListener.totalRun = totalRun;
 
 			System.out.println("Ignored Test Methods: " + ignoredMethods);
 

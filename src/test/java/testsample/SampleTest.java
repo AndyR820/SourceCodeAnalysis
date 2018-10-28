@@ -2,15 +2,12 @@ package testsample;
 
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import testng.CaseFilter;
-import testng.OSNames;
-import testng.ProgressTracker;
-import testng.TestDescription;
+import testng.*;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
-@Listeners({ CaseFilter.class, ProgressTracker.class })
+@Listeners({  ProgressTrackerListener.class })
 public class SampleTest {
 
 	@Test(groups = { OSNames.OS_LINUX })

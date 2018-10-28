@@ -1,7 +1,6 @@
 package getclass;
 
 import testng.TestDescription;
-import testsample.SampleTest;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -74,13 +73,19 @@ public class ScanAnnotation {
 
 
         public static void main(String[] args) throws Exception {
-             Set<Class<?>> classes = ScanPack.getClasses(System.getProperty("user.dir")+"/src/test/");
-            KeepAnnotation KeepAnnotation = getAnnotationByClass(SampleTest.class, TestDescription.class, false);
-            System.out.println(KeepAnnotation);
+             Set<Class<?>> classes = ScanPack.getClasses("");
+//            KeepAnnotation KeepAnnotation = getAnnotationByClass(SampleTest.class, TestDescription.class, false);
+//            System.out.println(KeepAnnotation);
             List<KeepAnnotation> k1=getAnnotationByPackage("",TestDescription.class,false);
             System.out.println(k1);
+            for(int i=0;i<k1.size();i++){
+                KeepAnnotation ka=k1.get(i);
+                if((!ka.getMethodAnnotation().toString().equals("")) || ka.getMethodAnnotation()!=null){
+                    System.out.println(ka.getClasszz().getName()+"~~~"+ka.getMethodAnnotation().toString());
 
-//            Map<String, Annotation> m=KeepAnnotation.getMethodAnnotation();
+                }
+            }
+
+
         }
-
 }
