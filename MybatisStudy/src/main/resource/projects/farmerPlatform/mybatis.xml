@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry
+		location="/software/mine-workspace/idea/mybatis-gen/lib/mybatis-generator-core-1.3.2.jar" />
+
+    <!--数据库模块-->
+    <context id="account" targetRuntime="MyBatis3">
+        <property name="javaFormatter" value="com.mybatis.util.MyFormatter"/>
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+            connectionURL="jdbc:mysql://localhost/demo" userId="root" password="admin">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <javaModelGenerator targetPackage="com.platform.base.dao"
+            targetProject="/software/mine-workspace/idea/mybatis-gen/src/gen/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+            <!--<property name="rootClass" value="com.platform.dao.entity.BaseEntity"/>-->
+        </javaModelGenerator>
+        <javaClientGenerator type="ANNOTATEDMAPPER"
+            targetPackage="com.platform.base.dao"
+            targetProject="/software/mine-workspace/idea/mybatis-gen/src/gen/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        
+        <table schema="demo" tableName="base_access_log" domainObjectName="AccessLogEntity">
+            <property name="useActualColumnNames" value="true" />
+            <!--<columnOverride column="status" javaType="com.sudaotech.core.enums.Status" />-->
+        </table>
+    </context>
+</generatorConfiguration>

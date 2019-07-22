@@ -1,0 +1,13 @@
+target: /software/mine-workspace/idea/mybatis-gen/src/gen/java
+items:
+  -
+    pkg: com.platform.base
+    domain: Star
+    primaryKeyField: starId
+    uriPath: /v2/star
+unused:
+  -
+    pkg: com.platform.base
+    domain: Star
+    primaryKeyField: starId
+    uriPath: /v2/star

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--从xml文件中，我们需要声明一个beans的顶级标签，
+同时需要引入核心命名空间，Spring的功能在使用时都需要声明相对应的命名空间，
+上述的命名空间是最基本的。然后通过bean子标签声明那些需要IOC容器帮助我们创建的类
+，其中name是指明IOC创建后该对象的名称（当然也可以使用id替换name，这个后面会讲到），
+class则是告诉IOC这个类的完全限定名称，IOC就会通过这组信息利用反射技术帮助我们创建对应的类对象：-->
+
+    <!-- 声明accountDao对象,交给spring创建 -->
+    <bean name="accountDao" class="ioc1.AccountDaoImpl"/>
+    <!-- 声明accountService对象,交给spring创建 -->
+    <bean name="accountService" class="ioc1.AccountServiceImpl">
+        <!-- 注入accountDao对象,需要set方法-->
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+
+    <!-- 通过构造注入依赖 -->
+    <bean name="accountService1" class="ioc1.AccountServiceImpl1">
+        <!-- 构造方法方式注入accountDao对象,-->
+        <constructor-arg  ref="accountDao"/>
+    </bean>
+
+
+    <!-- setter通过property 注入属性值，普通类型使用value -->
+    <bean id="account" scope="prototype" class="ioc1.Account" >
+        <property name="name" value="I am SpringIOC1" />
+        <property name="pwd" value="123" />
+        <!-- 注入map -->
+        <property name="books">
+            <map>
+                <entry key="10" value="CoreJava">
+                </entry>
+                <entry key="11" value="JavaWeb">
+                </entry>
+                <entry key="12" value="SSH2">
+                </entry>
+            </map>
+        </property>
+        <!-- 注入set -->
+        <property name="friends">
+            <set>
+                <value>张龙</value>
+                <value>老王</value>
+                <value>王五</value>
+            </set>
+        </property>
+        <!-- 注入list -->
+        <property name="citys">
+            <list>
+                <value>北京</value>
+                <value>上海</value>
+                <value>深圳</value>
+                <value>广州</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="logDao" class="com.Andy.spring.LogDao"/>
+    <bean id="userDao" class="com.Andy.spring.UserDao"/>
+    <bean class="com.Andy.spring.LogonService">
+        <constructor-arg  ref="logDao"></constructor-arg>
+        <constructor-arg ref="userDao"></constructor-arg>
+    </bean>
+</beans>
+
