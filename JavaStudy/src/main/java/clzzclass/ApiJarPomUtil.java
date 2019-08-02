@@ -126,7 +126,7 @@ public class ApiJarPomUtil {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		String path = "/Users/andy/.m2/repository/com/bj58/mism/meishi-service-facade/1.0.8/meishi-service-facade-1.0.8.jar";
+		String path = "本地路径";
 		List<InterfaceDescVo> list = loadJar(path);
 		System.out.println(list+"=====");
 	}
