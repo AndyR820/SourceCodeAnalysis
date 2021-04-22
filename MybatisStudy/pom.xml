@@ -37,7 +37,7 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.4.5</version>
+            <version>3.5.6</version>
         </dependency>         <!-- mybatis-generator-core.jar引入可以校验generatorConfig.xml, 并引入dtd; 不引用不影响生成过程 -->
         <dependency>
             <groupId>org.mybatis.generator</groupId>
